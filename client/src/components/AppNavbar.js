@@ -26,7 +26,7 @@ function AppNavbar() {
           <NavbarBrand href="/">ShoppingList</NavbarBrand>
           <NavbarToggler onClick={handleToggle} />
           <Collapse isOpen={isOpen} navbar>
-            <Nav className="ml-33" navbar>
+            <Nav className="ml-3" navbar>
               <NavItem>
                 <NavLink href="https://github.com/reactstrap/reactstrap">
                   GitHub
