@@ -15,21 +15,14 @@ import { getItems, deleteItems } from "../redux/actions/itemAction";
 import { connect } from "react-redux";
 
 const ShoppingList = ({ item, getItems, deleteItems }) => {
-  useEffect(() => {}, [getItems]);
+  useEffect(() => {
+    getItems();
+  }, [getItems]);
 
   const { items: itemShopping } = item;
   return (
     <div>
       <Container>
-       {/*  <Button
-          className="mb-2 rounded"
-          onClick={() => {
-            const name = prompt("Insert Item :");
-            // setItemShopping([...itemShopping, { name, id: uuidv4() }]);
-          }}
-        >
-          Add Item
-        </Button> */}
         <ListGroup>
           <TransitionGroup className="shopping-list rounded">
             {itemShopping?.map(({ id, name }) => (

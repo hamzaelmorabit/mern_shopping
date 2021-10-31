@@ -7,8 +7,8 @@ const PORT = process.env.PORT || 5000;
 const mongoURL = require("./config/keys").mongoURL;
 const items = require("./routes/api/items");
 
-app.use(express.json());
-// app.use(bodyParser.json());
+// app.use(express.json());
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.send([{ user: 22 }]);
