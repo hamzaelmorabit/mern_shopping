@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { v4 as uuidv4 } from "uuid";
 
@@ -10,57 +10,37 @@ import {
   ListGroupItemText,
 } from "reactstrap";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
-const ITEMS_SHOPPING = [
-  {
-    id: uuidv4(),
-    name: "Eggs",
-  },
-  {
-    id: uuidv4(),
-    name: "Eggs",
-  },
-  {
-    id: uuidv4(),
-    name: "Eggs",
-  },
-  {
-    id: uuidv4(),
-    name: "Eggs",
-  },
-  {
-    id: uuidv4(),
-    name: "Eggs",
-  },
-];
 
-function ShoppingList() {
-  const [itemShopping, setItemShopping] = useState(ITEMS_SHOPPING);
-  console.log(itemShopping);
+import { getItems, deleteItems } from "../redux/actions/itemAction";
+import { connect } from "react-redux";
+
+const ShoppingList = ({ item, getItems, deleteItems }) => {
+  useEffect(() => {}, [getItems]);
+
+  const { items: itemShopping } = item;
   return (
     <div>
       <Container>
-        <Button
+       {/*  <Button
           className="mb-2 rounded"
           onClick={() => {
             const name = prompt("Insert Item :");
-            setItemShopping([...itemShopping, { name, id: uuidv4() }]);
+            // setItemShopping([...itemShopping, { name, id: uuidv4() }]);
           }}
         >
           Add Item
-        </Button>
-        <ListGroup >
+        </Button> */}
+        <ListGroup>
           <TransitionGroup className="shopping-list rounded">
-            {itemShopping.map(({ id, name }) => (
+            {itemShopping?.map(({ id, name }) => (
               <CSSTransition key={id} timeout={500} classNames="fade">
-                <ListGroupItem >
+                <ListGroupItem>
                   <Button
                     className="remove-btn"
                     color="danger"
                     size={"sm"}
                     onClick={() => {
-                      setItemShopping(
-                        itemShopping.filter((item) => item.id !== id)
-                      );
+                      deleteItems(id);
                     }}
                   >
                     &times;
@@ -74,9 +54,13 @@ function ShoppingList() {
       </Container>
     </div>
   );
-}
-
-export default ShoppingList;
+};
+const mapStateToProps = (state) => ({
+  item: state.item,
+});
+export default connect(mapStateToProps, { getItems, deleteItems })(
+  ShoppingList
+);
 
 //    <button
 //         onClick={() => {
