@@ -25,15 +25,15 @@ const ShoppingList = ({ item, getItems, deleteItems }) => {
       <Container>
         <ListGroup>
           <TransitionGroup className="shopping-list rounded">
-            {itemShopping?.map(({ id, name }) => (
-              <CSSTransition key={id} timeout={500} classNames="fade">
+            {itemShopping?.map(({ _id, name }) => (
+              <CSSTransition key={_id} timeout={500} classNames="fade">
                 <ListGroupItem>
                   <Button
                     className="remove-btn"
                     color="danger"
                     size={"sm"}
                     onClick={() => {
-                      deleteItems(id);
+                      deleteItems(_id);
                     }}
                   >
                     &times;

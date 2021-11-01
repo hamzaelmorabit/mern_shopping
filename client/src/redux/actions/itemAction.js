@@ -4,7 +4,7 @@ import axios from "axios";
 
 export const getItems = () => (dispatch) => {
   dispatch(setItemsLoading());
-  axios.get("/api/items").then((res) => {
+  axios.get("api/items").then((res) => {
     dispatch({
       type: GET_ITEM,
       payload: res.data,
@@ -12,25 +12,33 @@ export const getItems = () => (dispatch) => {
   });
 };
 
-export const deleteItems = (id) => {
-  return {
-    type: DELETE_ITEM,
-    payload: id,
-  };
+export const deleteItems = (id) => (dispatch) => {
+  axios.delete(`/api/items/${id}`).then((res) => {
+    console.log(res, "res");
+    dispatch({
+      type: DELETE_ITEM,
+      payload: id,
+    });
+  });
+
+  // return {
+  //   type: DELETE_ITEM,
+  //   payload: id,
+  // };
 };
 
 export const addItem = (item) => (dispatch) => {
-  axios.post("/api/items", item).then((res) => {
+  axios.post("api/items", item).then((res) => {
     dispatch({
       type: ADD_ITEM,
       payload: item,
     });
   });
 
-  return {
-    type: ADD_ITEM,
-    payload: item,
-  };
+  // return {
+  //   type: ADD_ITEM,
+  //   payload: item,
+  // };
 };
 
 export const setItemsLoading = () => {
