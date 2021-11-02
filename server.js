@@ -7,9 +7,11 @@ const path = require("path");
 const PORT = process.env.PORT || 5000;
 const mongoURL = require("./config/keys").mongoURL;
 const items = require("./routes/api/items");
+const users = require("./routes/api/users");
+const auth = require("./routes/api/auth");
 
-// app.use(express.json());
-app.use(bodyParser.json());
+app.use(express.json());
+// app.use(bodyParser.json());
 
 // app.get("/", (req, res) => {
 //   res.send([{ user: 22 }]);
@@ -17,6 +19,9 @@ app.use(bodyParser.json());
 
 //
 app.use("/api/items", items);
+app.use("/api/users", users);
+app.use("/api/users", auth);
+
 if (process.env.NODE_ENV === "production") {
   //Set static folder
   app.use(express.static("client/build"));

@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 
+const auth = require("./../../middleware/auth");
+
 // Item Model
 const Item = require("../../models/Item");
 
@@ -10,10 +12,10 @@ const Item = require("../../models/Item");
 //     .then((items) => res.json(items));
 // });
 
-router.get('/', async (req, res) => {
+router.get("/", async (req, res) => {
   try {
     const items = await Item.find();
-    if (!items) throw Error('No items');
+    if (!items) throw Error("No items");
 
     res.status(200).json(items);
   } catch (e) {
@@ -21,7 +23,7 @@ router.get('/', async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", auth, async (req, res) => {
   const item = new Item({ ...req.body });
   item
     .save()
