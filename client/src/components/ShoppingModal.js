@@ -31,6 +31,7 @@ const ShoppingModal = ({ addItem }) => {
       name,
     };
     addItem(itemAdded);
+    console.log(itemAdded, "itemAdded");
     setModal(!modal);
   };
 
@@ -66,7 +67,7 @@ const ShoppingModal = ({ addItem }) => {
               </FormGroup>
             </Form>
           </ModalBody>
-        </Modal>{" "}
+        </Modal> 
       </Container>
     </div>
   );

@@ -11,6 +11,7 @@ export default function (state = initialState, action) {
       return {
         ...state,
         msg: action.payload.msg,
+        id: action.payload.id,
         status: action.payload.status,
       };
     case CLEAR_ERRORS:

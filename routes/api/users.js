@@ -22,7 +22,8 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const { email, password, name } = req.body;
   if (!email || !password || !name) {
-    res.send({ error: "Insert all fields" });
+    // res.send({ error: "Insert all fields" });
+    res.status(400).send({ error: "Insert all fields" });
   }
 
   const user_ = new User({ ...req.body });

@@ -28,6 +28,7 @@ export const deleteItems = (id) => (dispatch) => {
 };
 
 export const addItem = (item) => (dispatch) => {
+  console.log("addItem", item);
   axios.post("api/items", item).then((res) => {
     dispatch({
       type: ADD_ITEM,

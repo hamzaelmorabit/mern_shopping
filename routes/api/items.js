@@ -15,6 +15,7 @@ const Item = require("../../models/Item");
 router.get("/", async (req, res) => {
   try {
     const items = await Item.find();
+    console.log(items, "getItem");
     if (!items) throw Error("No items");
 
     res.status(200).json(items);

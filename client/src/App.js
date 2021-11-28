@@ -8,16 +8,18 @@ import { Provider } from "react-redux";
 import store from "./redux/store";
 import ShoppingModal from "./components/ShoppingModal";
 import { loadUser } from "./redux/actions/authAction";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+
 function App() {
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
   return (
     <Provider store={store}>
-      <div className="App">
-        <AppNavbar />
+      <div  >
+       <AppNavbar />
         <ShoppingModal />
-        <ShoppingList />
+        <ShoppingList /> 
       </div>
     </Provider>
   );

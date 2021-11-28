@@ -2,6 +2,37 @@
 
 /* animation: fadeIn 5s; */
 
+.App {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* #exampleEmail {
+    color: red;
+    /* border-color: red; 
+}
+
+#exampleEmail:focus {
+    color: red;
+    border-color: red;
+    box-shadow: 0 0 0 1px #cf1616, 0 2px 4px 0 rgb(0 0 0 / 7%), 0 1px 1.5px 0 rgb(0 0 0 / 5%);
+} */
+
+/* #exampleEmail:active {
+    border-color: red;
+} */
+
+.form {
+    width: 50%;
+    /* background-color: red; */
+    display: flex;
+    flex-direction: column;
+    border: 1;
+    /* justify-content: center; */
+}
+
 .items>li:last-child {
     animation: fadeIn 5s;
     /* color: red */

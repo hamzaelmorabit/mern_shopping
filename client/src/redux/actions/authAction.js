@@ -33,6 +33,37 @@ export const loadUser = () => (dispatch, getState) => {
     });
 };
 
+export const register =
+  ({ name, email, password }) =>
+  (dispatch) => {
+    console.log("Register from authAction");
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    const body = JSON.stringify({ name, email, password });
+    axios
+      .post("/api/users", body, config)
+      .then((res) => {
+        console.log(res, "REGISTER_SUCCESS");
+
+        dispatch({
+          type: REGISTER_SUCCESS,
+          payload: res.data,
+        });
+      })
+      .catch((err) => {
+        console.log(err.response, "err.response");
+        dispatch(
+          returnErrors(err.response.data.error, err.response.status, "REGISTER_FAIL")
+        );
+        dispatch({
+          type: REGISTER_FAIL,
+        });
+      });
+  };
+
 // Setup config/headers and token
 export const tokenConfig = (getState) => {
   // Get token from localstorage
